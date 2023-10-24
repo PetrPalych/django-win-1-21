@@ -2,20 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Books</title>
+    <title>Minimalistic Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+        }
+        a {
+            text-decoration: none;
+            background-color: #0074b1;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .book_image {
+            width: 10%;
+            margin: auto;
+        }
+
+        .book_image > img {
+            width: 100%
+        }
+    </style>
 </head>
 <body>
-    <center>
-        {% for book in books %}
+    <a class="nav-link" href="/add-comment/">Написать отзыв</a>
+    <a class="nav-link" href="/create_book/">Добавить книггу</a>
+    <a class="nav-link" href="/book_list/" style="color: red;">Удалить книгу</a>
+
+    <ul>
+        {% for book in book_key %}
         <li>
-        <h2>{{ book.title }}</h2>
+            <h2>{{ book.title }}</h2>
             <p><em>{{ book.description }}</em></p>
             <p><em>{{ book.cost }}</em></p>
-            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            <div class="book_image">
+                <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            </div>
             <p><strong>{{ book.created_at }}</strong></p>
-            <a href="{{ book.id }}">Посмотреть</a>
-            </li>
+            <a href="/book_detail/{{ book.id }}">Подробнее</a>
+        </li>
         {% endfor %}
-    </center>
+    </ul>
 </body>
 </html>
